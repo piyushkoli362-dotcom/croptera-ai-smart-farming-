@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.vercel/
+.preview-chrome/
+.preview-tmp/
+*-preview.png
+index-before-showcase.html.bak
+outputs/
