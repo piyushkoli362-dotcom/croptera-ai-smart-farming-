@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const out = path.join(root, 'dist');
-const publicFiles = ['index.html', 'careers.html', 'privacy.html', 'updates.html', 'styles.css', 'showcase.css', 'script.js', 'robots.txt', 'google0a9687274ca52e4f.html'];
+const publicFiles = ['index.html', 'careers.html', 'privacy.html', 'updates.html', 'styles.css', 'showcase.css', 'script.js', 'robots.txt', 'google0a9687274ca52e4f.html', 'google6346d7fbc9b6f809.html'];
 const pages = [
   { file: 'index.html', route: '/', index: true },
   { file: 'careers.html', route: '/careers.html', index: true },
