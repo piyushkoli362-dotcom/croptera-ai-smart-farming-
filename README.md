@@ -28,7 +28,7 @@ The Excel export uses the `@oai/artifact-tool` bundled with this Codex workspace
 
 ## Public submissions and where to view them
 
-The website now includes a Vercel `/api/submit` function and a Google Sheets Apps Script writer. **The live connection is still inactive until the owner deploys the writer and sets the server credentials.** The public forms check `/api/status`; they stay disabled until both server environment variables are set. The Google Sheet has three tabs: **Pre-Registrations**, **Enquiries**, and **Talent Interest**. Open that private sheet in your Google Drive to view new entries. Do not share it publicly.
+The website includes a Vercel `/api/submit` function and a Google Sheets Apps Script writer. The production connection is active on `https://croptera-ai-smart-farming.vercel.app/`. The public forms check `/api/status` and stay disabled if either server environment variable is missing. The private Google Sheet has three tabs: **Pre-Registrations**, **Enquiries**, and **Talent Interest**. Open that sheet in Google Drive to view new entries. Do not share it publicly.
 
 ### Connect your private Google Sheet
 
@@ -48,6 +48,10 @@ The server endpoint validates fields, checks same-origin browser submissions, an
 2. Import the repository into Vercel. Use build command `npm run build`, output directory `dist`, and framework preset **Other**. The root `api/` directory provides the two serverless functions.
 3. Set `SITE_URL` to the actual HTTPS site URL and redeploy for canonical URLs and `sitemap.xml`.
 4. Complete the private Google Sheet setup above and verify real delivery.
+
+## Search visibility
+
+The production build uses `SITE_URL` to add canonical links, Open Graph and social preview tags, and an XML sitemap. The home page also includes truthful organization, founder, and website structured data. The placeholder updates page has `noindex,follow` and is omitted from the sitemap until real articles are published. After deployment, verify the site in Google Search Console and submit `https://croptera-ai-smart-farming.vercel.app/sitemap.xml`. Sitemap submission requests crawling; it does not guarantee indexing or rankings.
 
 Before collecting real personal data, review who can access the Google Sheet, how long entries are kept, how deletion requests are handled, and whether your privacy notice reflects your actual setup. The public endpoint has basic validation and a honeypot, but no durable bot rate limit yet; monitor for spam after launch.
 
