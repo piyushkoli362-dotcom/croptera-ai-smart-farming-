@@ -46,12 +46,12 @@ The server endpoint validates fields, checks same-origin browser submissions, an
 
 1. Push project source to Git, **without** `outputs/` or the local workbook.
 2. Import the repository into Vercel. Use build command `npm run build`, output directory `dist`, and framework preset **Other**. The root `api/` directory provides the two serverless functions.
-3. Canonical URLs and `sitemap.xml` use `https://croptera-ai-smart-farming.vercel.app` by default. Set `SITE_URL` only if the production origin changes, then redeploy.
+3. Canonical URLs and `sitemap.xml` use `https://croptera-ai-smart-farming.vercel.app`. If the production hostname changes, update the canonical origin in `scripts/build.mjs`, update or remove `SITE_URL`, then redeploy and resubmit the sitemap.
 4. Complete the private Google Sheet setup above and verify real delivery.
 
 ## Search visibility
 
-The build uses the production origin (or a `SITE_URL` override) to add canonical links, Open Graph and social preview tags, and an XML sitemap. The home page also includes truthful organization, founder, and website structured data. The placeholder updates page has `noindex,follow` and is omitted from the sitemap until real articles are published. The Search Console HTML verification file at the site root must remain available to keep ownership verified. `https://croptera-ai-smart-farming.vercel.app/sitemap.xml` has already been submitted in Search Console. Sitemap submission requests crawling; it does not guarantee indexing or rankings.
+The build uses the fixed production origin to add canonical links, Open Graph and social preview tags, and an XML sitemap. `SITE_URL` is accepted only when it matches that origin, so a preview hostname cannot enter the sitemap or canonical tags. The home page also includes truthful organization, founder, and website structured data. The placeholder updates page has `noindex,follow` and is omitted from the sitemap until real articles are published. The Search Console HTML verification files at the site root must remain available to keep ownership verified. `https://croptera-ai-smart-farming.vercel.app/sitemap.xml` has already been submitted in Search Console. Sitemap submission requests crawling; it does not guarantee indexing or rankings.
 
 Before collecting real personal data, review who can access the Google Sheet, how long entries are kept, how deletion requests are handled, and whether your privacy notice reflects your actual setup. The public endpoint has basic validation and a honeypot, but no durable bot rate limit yet; monitor for spam after launch.
 
@@ -63,7 +63,7 @@ Run `npm run check` and `npm run build` before deployment.
 | --- | --- | --- |
 | `PORT` | Local server port; default `3000` | No |
 | `CROPTERA_DATA_DIR` | Private local workbook and record directory | No |
-| `SITE_URL` | Override the production HTTPS origin used for SEO metadata | Only if the production URL changes |
+| `SITE_URL` | Optional check that the configured URL matches the canonical production origin | No |
 | `GOOGLE_SHEETS_WEB_APP_URL` | Private Apps Script `/exec` writer URL | For public forms |
 | `GOOGLE_SHEETS_SECRET` | Matches Apps Script `SHEET_WRITE_SECRET` | For public forms |
 

@@ -16,8 +16,11 @@ fs.mkdirSync(out, { recursive: true });
 for (const file of publicFiles) fs.copyFileSync(path.join(root, file), path.join(out, file));
 fs.cpSync(path.join(root, 'assets'), path.join(out, 'assets'), { recursive: true });
 
-// Preview deployments should point search engines to the public production site.
-const siteUrl = (process.env.SITE_URL || 'https://croptera-ai-smart-farming.vercel.app').replace(/\/+$/, '');
+// Preview deployments must also point search engines to this canonical production host.
+const siteUrl = 'https://croptera-ai-smart-farming.vercel.app';
+if (process.env.SITE_URL && process.env.SITE_URL.replace(/\/+$/, '') !== siteUrl) {
+  throw new Error(`SITE_URL must match the canonical production origin: ${siteUrl}`);
+}
 if (siteUrl) {
   if (!/^https:\/\/[^\s/?#]+$/.test(siteUrl)) throw new Error('SITE_URL must be an HTTPS origin without a path');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.filter(page => page.index).map(page => `  <url><loc>${siteUrl}${page.route}</loc></url>`).join('\n')}\n</urlset>\n`;
