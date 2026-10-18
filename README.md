@@ -51,7 +51,7 @@ The server endpoint validates fields, checks same-origin browser submissions, an
 
 ## Search visibility
 
-The production build uses `SITE_URL` to add canonical links, Open Graph and social preview tags, and an XML sitemap. The home page also includes truthful organization, founder, and website structured data. The placeholder updates page has `noindex,follow` and is omitted from the sitemap until real articles are published. After deployment, verify the site in Google Search Console and submit `https://croptera-ai-smart-farming.vercel.app/sitemap.xml`. Sitemap submission requests crawling; it does not guarantee indexing or rankings.
+The production build uses `SITE_URL` to add canonical links, Open Graph and social preview tags, and an XML sitemap. The home page also includes truthful organization, founder, and website structured data. The placeholder updates page has `noindex,follow` and is omitted from the sitemap until real articles are published. The Search Console HTML verification file at the site root must remain available to keep ownership verified. Submit `https://croptera-ai-smart-farming.vercel.app/sitemap.xml` in Search Console. Sitemap submission requests crawling; it does not guarantee indexing or rankings.
 
 Before collecting real personal data, review who can access the Google Sheet, how long entries are kept, how deletion requests are handled, and whether your privacy notice reflects your actual setup. The public endpoint has basic validation and a honeypot, but no durable bot rate limit yet; monitor for spam after launch.
 
